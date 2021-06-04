@@ -12,16 +12,16 @@ GPIO.setmode(GPIO.BCM)
 pinList = [4,17,6,19,26,27,25,23,15,20,16,12,8,7]
 
 for i in pinList:
-    GPIO.setup(i,GPIO.IN)
+    GPIO.setup(i,GPIO.OUT)
 
 try:
     #LED ON
     for i in pinList:
-        GPIO.setup(i,GPIO.OUT)
+        GPIO.output(i,GPIO.HIGH)
         time.sleep(0.5)
     #LED OFF
     for i in pinList:
-        GPIO.setup(i,GPIO.IN)
+        GPIO.output(i,GPIO.LOW)
         time.sleep(0.5)
 except KeyboardInterrupt:
     GPIO.cleanup()

@@ -1,3 +1,4 @@
+# Code only works for integrated motherboard revision 1.1
 # EDSFieldController
 
 ## Overview

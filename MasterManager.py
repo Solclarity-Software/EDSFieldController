@@ -91,6 +91,7 @@ GPIO.output(test_master.get_pin('outPinLEDGreen'), 0)
 
 # manual button port setup
 GPIO.setup(test_master.get_pin('inPinManualActivate'), GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(test_master.get_pin('SafeShutdownButton'), GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # old button setup
 # GPIO.add_event_detect(test_master.get_pin('inPinManualActivate'), GPIO.RISING)
 

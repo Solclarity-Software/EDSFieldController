@@ -685,6 +685,17 @@ while True:
             print_l(current_time(), "Ended Manual Activation Test of EDS" + str(eds_num))
 
         '''
+        SAFE SHUTDOWN CODE
+        --------------------------------------------------------------------------
+        '''
+
+        safe_state = GPIO.input(test_master.get_pin('SafeShutdownButton'))
+        if safe_state == True:
+            time.sleep(0.5)
+            print("Safe Shutdown in now...")
+            subprocess.call("sudo shutdown now", shell=True)
+
+        '''
         END MANUAL ACTIVATION CODE
         --------------------------------------------------------------------------
         '''

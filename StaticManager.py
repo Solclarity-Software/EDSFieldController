@@ -69,6 +69,7 @@ DEFAULT_CONFIG_PARAM = {
     'outPinLEDGreen': 5, # GPIO 5 = pin 29
     'outPinLEDRed': 13, # GPIO 13 = pin 33
     'inPinManualActivate': 22, # GPIO 22 = pin 15
+    'SafeShutdownButton': 24, # GPIO 24 = pin 18
     'manualEDSNumber': 1, # EDS number, not pin number
     'ADC': 25, # GPIO 25 = pin 22
     'solarChargerEDSNumber': 6, # EDS number not pin number

@@ -45,7 +45,16 @@ usb_master.check_new_USB()
 print(usb_master.get_USB_path())
 
 #Read Schedule config if there is one
-static_master.update_schedule(usb_master.get_USB_path())
+if usb_master.check_usb() == True:
+    # mounts the usb
+    usb_master.setup_usb_mount()
+    #read schedule
+    static_master.update_schedule(usb_master.get_USB_path())
+else:
+    # if not, then reboot
+    print_l(current_time(), "No USB Detected!")
+    usb_master.reset()
+
 
 # setup sensors
 weather = AM2315.AM2315()

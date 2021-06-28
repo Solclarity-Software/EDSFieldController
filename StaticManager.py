@@ -265,6 +265,7 @@ class StaticMaster:
                 PANEL_DATA[eds]['frequency'] = EDS_SCHEDULE[eds]['frequency']  
                 PANEL_DATA[eds]['schedule'] = EDS_SCHEDULE[eds]['schedule']
             self.panel_data = PANEL_DATA
+            print("Updating Schedule using json in usb")
             #testing
             print(EDS_SCHEDULE)
             print(PANEL_DATA)

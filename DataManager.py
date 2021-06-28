@@ -288,7 +288,7 @@ class CSVMaster:
         
     # write to csv version of manual testing data log file
     def write_csv_manual_data(self, dt, temp, humid, g_poa, eds_num, eds_ocv_before, eds_ocv_after, eds_scc_before, eds_scc_after, eds_power,pr_data,si_data):
-        row = self.data_row_manual(dt, temp, humid, g_poa, eds_num, eds_ocv_before, eds_ocv_after, eds_scc_before, eds_scc_after, eds_power,pr_data,si_data)
+        row = self.dat    a_row_manual(dt, temp, humid, g_poa, eds_num, eds_ocv_before, eds_ocv_after, eds_scc_before, eds_scc_after, eds_power,pr_data,si_data)
         try:
             # attempt to open csv file in append mode (don't want to create lots of files)
             with open(self.csv_manual_data, mode='a') as f_csv:

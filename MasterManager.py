@@ -44,6 +44,9 @@ while usb_master.set_USB_name() == False:
 usb_master.check_new_USB()
 print(usb_master.get_USB_path())
 
+#Read Schedule config if there is one
+static_master.update_schedule(usb_master.get_USB_path())
+
 # setup sensors
 weather = AM2315.AM2315()
 i2c_bus = busio.I2C(SCL, SDA)

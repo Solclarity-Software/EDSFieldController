@@ -251,6 +251,25 @@ class StaticMaster:
         # returns panel data template for measurements
         return self.panel_data
 
+    def update_schedule(self, usb_path)
+        location_path = usb_path + '/'
+        schedule_path = location_path + 'Schedule.json'
+        #open 
+        try:
+            with open(schedule_path, 'r') as file:
+                json_file = json.load(file)
+            #update eds schedule and panel data
+            EDS_SCHEDULE = json_file
+            #update panel data
+            for eds in EDS_SCHEDULE:
+                PANEL_DATA[eds]['frequency'] = EDS_SCHEDULE[eds]['frequency']  
+                PANEL_DATA[eds]['schedule'] = EDS_SCHEDULE[eds]['schedule']
+             self.panel_data = PANEL_DATA
+        except:
+            print("Using defaults for EDS Schedule")
+
+
+
 
 '''
 Schedule class

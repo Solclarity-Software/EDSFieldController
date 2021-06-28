@@ -50,6 +50,8 @@ if usb_master.check_usb() == True:
     usb_master.setup_usb_mount()
     #read schedule
     static_master.update_schedule(usb_master.get_USB_path())
+    #unmount usb
+    usb_master.reset_usb_mounts()
 else:
     # if not, then reboot
     print_l(current_time(), "No USB Detected!")

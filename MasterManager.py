@@ -26,7 +26,9 @@ from math import floor, ceil
 
 print("Initializing...")
 #initilize logging
-logging.basicConfig(format='%(asctime)s %(message)s', filename = 'Error.log', level = logging.INFO)
+logging.basicConfig(format='%(asctime)s %(message)s',
+                    filename ='/home/pi/Desktop/EDSFieldController/Error.log',
+                    level = logging.INFO)
 logging.info('Code started')
 # read config, get constants, etc
 static_master = SM.StaticMaster()

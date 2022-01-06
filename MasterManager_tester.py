@@ -426,17 +426,20 @@ while True:
                 # initialize panel data
                 data = panel_data
                 # Pre EDS Activation Panel Measurements
-                for eds in eds_ids:
+                EDSIDS = ['eds1','eds2','eds3','eds4','eds5','eds6']
+                for eds in EDSIDS:
                     print_l(current_time(), " Weather check passed. Now proceeding for time check for " + eds + " panel")
                     # get data for frequency and schedule check for the current eds panel
                     freq = data[eds]['frequency']
                     sched = data[eds]['schedule']
+                    print(freq)
+                    print(sched)
                     # declare panel class, which gives the frequency and schedule checks
                     eds_panel = SM.ScheduleMaster(eds, freq, sched, longitude, gmt_offset)
                     # check for the schedule check
-                    schedule_pass = eds_panel.check_time(current_time())
+                    schedule_pass = True
                     # check for frequency check only if it meets schedule check
-                    if True:
+                    if schedule_pass:
                         schedule_pass = True
                         print_l(current_time()," schedule passed for " + eds + " panel")
                         frequency_pass = eds_panel.check_frequency(eds, current_time())

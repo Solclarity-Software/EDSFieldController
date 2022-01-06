@@ -340,7 +340,7 @@ class ScheduleMaster:
                 'eds6':{
                     'is_activated':False,
                     'record_dt': dt
-                }
+                },
             }
         #checks if json exists
         if not path.exists('/home/pi/Desktop/eds.json'):

@@ -598,7 +598,7 @@ while True:
                     with open('/home/pi/Desktop/eds.json', 'r') as file:
                         json_file = json.load(file)
                     # reset all is_activated into false
-                    eds_names = ['eds1', 'eds2', 'eds3', 'eds4', 'eds5']
+                    eds_names = ['eds1', 'eds2', 'eds3', 'eds4', 'eds5','eds6']
                     for x in eds_names:
                         json_file[x].update({
                             'is_activated': False

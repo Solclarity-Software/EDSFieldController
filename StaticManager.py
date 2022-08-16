@@ -34,6 +34,10 @@ EDS_SCHEDULE = {
         'schedule':['660'],
         'frequency':1
     },
+    'eds6': {
+        'schedule':['690'],
+        'frequency':1
+    },
 }
 #DO NOT CHANGE THIS UNLESS CIRCUITRY HAS CHANGED
 DEFAULT_CONFIG_PARAM = {
@@ -56,15 +60,15 @@ DEFAULT_CONFIG_PARAM = {
     'CTRL2PV': 23, # GPIO 23 = pin 16
     # 'CTRLIDS': [1, 2],
     # for measurement loop
-    'PANELIDS':['eds1','eds2','eds3','eds4','eds5','ctrl1','ctrl2'],
-    'EDSIDS': ['eds1','eds2','eds3','eds4','eds5'],
+    'PANELIDS':['eds1','eds2','eds3','eds4','eds5','eds6','ctrl1','ctrl2'],
+    'EDSIDS': ['eds1','eds2','eds3','eds4','eds5','eds6'],
     'CTRLIDS': ['ctrl1','ctrl2'],
     # testing requirements
     'maxTemperatureCelsius': 40, # degrees C
     'minTemperatureCelsius': 10, # degrees C
     'maxRelativeHumidity': 60,   # percentage
     'minRelativeHumidity': 5,    # percentage
-    'testDurationSeconds': 10, # (seconds) 2 minute, duration for EDS activation
+    'testDurationSeconds': 120, # (seconds) 2 minute, duration for EDS activation
     # indicators/switches
     # gpio pin number
     'outPinLEDGreen': 5, # GPIO 5 = pin 29
@@ -185,6 +189,27 @@ PANEL_DATA = {
         'si_post':0,
         'frequency':EDS_SCHEDULE['eds5']['frequency'],
         'schedule':EDS_SCHEDULE['eds5']['schedule']
+    },
+    'eds6':{
+        'name':'EDS-PV6',
+        'num':6,
+        'type':'eds',
+        'date_time':'',
+        'temp':0,
+        'humid':0,
+        'gpoa':0,
+        'ocv_pre':0,
+        'ocv_post':0,
+        'scc_pre':0,
+        'scc_post':0,
+        'pwr_pre':0,
+        'pwr_post':0,
+        'pr_pre':0,
+        'pr_post':0,
+        'si_pre':0,
+        'si_post':0,
+        'frequency':EDS_SCHEDULE['eds6']['frequency'],
+        'schedule':EDS_SCHEDULE['eds6']['schedule']
     },
     'ctrl1':{
         'name':'CTRL-PV1',
@@ -312,7 +337,11 @@ class ScheduleMaster:
                 'eds5':{
                     'is_activated':False,
                     'record_dt': dt
-                }
+                },
+                'eds6':{
+                    'is_activated':False,
+                    'record_dt': dt
+                },
             }
         #checks if json exists
         if not path.exists('/home/pi/Desktop/eds.json'):

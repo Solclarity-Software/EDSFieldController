@@ -3,7 +3,6 @@
 Title: Master Control - EDS Field Control
 Author: Benjamin Considine, Brian Mahabir, Aditya Wikara
 Started: September 2018
-Version 2 (Json act)
 =============================
 '''
 
@@ -416,33 +415,36 @@ while True:
         --------------------------------------------------------------------------
         '''
         # first check, if it is during the day
-        if day:
+        if True:
             # Temperature Humidity Sensor Check
             w_read = weather.read_humidity_temperature()
             temp_pass = test_master.check_temp(w_read[1])
             humid_pass = test_master.check_humid(w_read[0])
             weather_pass = temp_pass and humid_pass
             # if weather and time checks pass, proceed to next check
-            if weather_pass:
+            if True:
                 # initialize panel data
                 data = panel_data
                 # Pre EDS Activation Panel Measurements
-                for eds in eds_ids:
+                EDSIDS = ['eds1','eds2','eds3','eds4','eds5','eds6']
+                for eds in EDSIDS:
                     print_l(current_time(), " Weather check passed. Now proceeding for time check for " + eds + " panel")
                     # get data for frequency and schedule check for the current eds panel
                     freq = data[eds]['frequency']
                     sched = data[eds]['schedule']
+                    print(freq)
+                    print(sched)
                     # declare panel class, which gives the frequency and schedule checks
                     eds_panel = SM.ScheduleMaster(eds, freq, sched, longitude, gmt_offset)
                     # check for the schedule check
-                    schedule_pass = eds_panel.check_time(current_time())
+                    schedule_pass = True
                     # check for frequency check only if it meets schedule check
                     if schedule_pass:
                         schedule_pass = True
                         print_l(current_time()," schedule passed for " + eds + " panel")
                         frequency_pass = eds_panel.check_frequency(eds, current_time())
                     # proceed to EDS measurement and activation process
-                    if schedule_pass and frequency_pass:
+                    if True:
                         print_l(current_time()," schedule and frequency passed for " + eds + " panel")
                         # mount the usb for data collection if there is a USB plugged
                         if usb_master.check_usb() == True:
@@ -599,7 +601,7 @@ while True:
                     with open('/home/pi/Desktop/eds.json', 'r') as file:
                         json_file = json.load(file)
                     # reset all is_activated into false
-                    eds_names = ['eds1', 'eds2', 'eds3', 'eds4', 'eds5','eds6']
+                    eds_names = ['eds1', 'eds2', 'eds3', 'eds4', 'eds5']
                     for x in eds_names:
                         json_file[x].update({
                             'is_activated': False

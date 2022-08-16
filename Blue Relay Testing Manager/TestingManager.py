@@ -1,9 +1,11 @@
+
+
 '''
 =============================
 Title: Testing and Data Collection - EDS Field Control
 Author: Benjamin Considine, Brian Mahabir, Aditya Wikara
 Started: September 2018
-Version 2 (Json act)
+Version 1.5 (Blue Relay motherboard version)
 =============================
 '''
 
@@ -166,27 +168,24 @@ class TestingMaster:
         pv_relay = self.get_pin('EDS' + str(eds_num) + 'PV')
         # Setup GPIO pins to measure Voc and Isc of desired panel
         GPIO.setup(pv_relay, GPIO.OUT)
-        GPIO.output(pv_relay, GPIO.HIGH)
-        #Turns on relay for desired PV to measure
         GPIO.setup(self.get_pin('ADC'), GPIO.OUT)
         time.sleep(0.5)
         # OCV READ
         # Switch the relay to read Voc
-        GPIO.output(self.get_pin('ADC'), GPIO.HIGH)
+        GPIO.setup(self.get_pin('ADC'), GPIO.IN)
         time.sleep(0.5)
         # Get reading
         read_ocv = self.adc_m.get_ocv_PV()
         # SCC READ
         # Switch relay to read Isc
-        GPIO.output(self.get_pin('ADC'), GPIO.LOW)
+        GPIO.setup(self.get_pin('ADC'), GPIO.OUT)
         time.sleep(0.5)
         # get reading
         read_scc = self.adc_m.get_scc_PV()
         # Default pin is LOW, no need to switch, just clean up
-        # Sets PV relay to low before clean up 
-        GPIO.output(pv_relay, GPIO.LOW)
         time.sleep(0.5)
         GPIO.cleanup(self.get_pin('ADC'))
+        #GPIO.cleanup(25)
         # Close EDS PV Relay
         time.sleep(0.5)
         GPIO.cleanup(pv_relay)
@@ -199,23 +198,21 @@ class TestingMaster:
         pv_relay = self.get_pin('CTRL' + str(ctrl_num) + 'PV')
         # Setup GPIO pins to measure Voc and Isc of desired panel
         GPIO.setup(pv_relay, GPIO.OUT)
-        GPIO.output(pv_relay, GPIO.HIGH)
         GPIO.setup(self.get_pin('ADC'), GPIO.OUT)
         time.sleep(0.5)
         # OCV READ
         # Switch the relay to read Voc
-        GPIO.output(self.get_pin('ADC'), GPIO.HIGH)
+        GPIO.setup(self.get_pin('ADC'), GPIO.IN)
         time.sleep(0.5)
         # Get reading
         read_ocv = self.adc_m.get_ocv_PV()
         # SCC READ
         # Switch relay to read Isc
-        GPIO.output(self.get_pin('ADC'), GPIO.LOW)
+        GPIO.setup(self.get_pin('ADC'), GPIO.OUT)
         time.sleep(0.5)
         # get reading
         read_scc = self.adc_m.get_scc_PV()
         # Default pin is LOW, no need to switch, just clean up
-        GPIO.output(pv_relay, GPIO.LOW)
         time.sleep(0.5)
         GPIO.cleanup(self.get_pin('ADC'))
         # Close EDS PV Relay
@@ -326,7 +323,6 @@ class PerformanceRatio:
         else:
             PR = power/((self.ptc*gpoa)/self.gstc)
         return round(PR,2)
-
 '''
 Soiling Class:
 Functionality:
